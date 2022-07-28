@@ -29,6 +29,26 @@ async def on_ready():
 async def ping(ctx):
 	await ctx.channel.send(">pong")
 
+#on_member_join
+@bot.event
+async def on_member_join(member):
+  ch = 955078281080762449 #welcome channel id
+  channel = bot.get_channel(ch)
+	#this will send the message to welcome channel by tagging the user
+  join = [f'Hello {member.mention}, Welcome to CODE. Go to <#955080324243652658> by click on it to verify yourself on this club.', f'Hello There {member.mention}!! Happy to have you here on CODE. Go to <#955080324243652658> by click on it to verify yourself on this club.', f'Welcome to the CODE {member.mention}. Go to <#955080324243652658> by click on it to verify yourself on this club.', f'CODE welcomes you {member.mention}. Go to <#955080324243652658> by click on it to verify yourself on this club.']
+  embed = discord.Embed(colour=discord.Colour.blue())
+  session = aiohttp.ClientSession()
+  response = await session.get('http://api.giphy.com/v1/gifs/search?q=' + 'greetings' + '&api_key=' + os.environ['GIFHY'] +'&limit=20')
+  data = json.loads(await response.text())
+  gif_choice = random.randint(0, 19)
+  embed.set_image(url=data['data'][gif_choice]['images']['original']['url'])
+  await session.close()
+  await channel.send(random.choice(join))
+  await channel.send(embed=embed)
+
+	#this will send the message to the user dm
+# await member.send(f'Hi {member.name}, welcome to my Discord server!')	
+	
 @bot.command()
 async def add(ctx, left : int, right : int):
   await ctx.channel.send(left + right)
