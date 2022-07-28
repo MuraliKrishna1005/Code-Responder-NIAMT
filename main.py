@@ -224,4 +224,4 @@ async def defineself(ctx):
   await ctx.send(f'Aham {bot.user} asmi')
   await ctx.send(embed=embed)
 
-bot.run(OTU2NDQ0MTY1NjIzOTE0NTM2.YjwUCg.ld7Jus5FyteslvTVQPmasF4b0qk)
+bot.run("OTU2NDQ0MTY1NjIzOTE0NTM2.YjwUCg.ld7Jus5FyteslvTVQPmasF4b0qk")
